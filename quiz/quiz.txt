@@ -1,0 +1,119 @@
+    【单选】下列关于命名空间和STL的说法正确的是:
+
+    A. 如下的代码片段是有问题的，即不可以声明和定义同一个命名空间多次，每次添加新的成员。
+
+    namespace A{int i;}
+    namespace A{int j;}
+
+    B. 使用using std::cout会暴露命名空间std中其他的变量名例如cin;
+
+    C. 命名空间可以嵌套, 例如 namespace A{namespace B{int i;}}。
+
+    D. STL中的序列容器包括vector, list, set。
+
+    【单选】下列关于简单容器类型及其函数说法错误的是:
+
+    A. 从std::make_tuple可以接受任意个数的参数，可以看出tuple对象的长度（即包含的元素个数）在运行时才确定。
+
+    B. std::make_pair(a,b)中，a,b的变量类型可以不相同。
+
+    C. std::tuple类重载了赋值运算符=。
+
+    D. std::tie的形参和返回值均为引用。
+
+    【单选】以下代码展示了一些vector类型上的操作, 说法【错误】的是:
+
+    1    #include <iostream>
+    2    #include <vector>
+    3    using namespace std;
+    4
+    5    int main(){
+    6        vector<int> vec = {1,2,3,4,5};
+    7        auto a = vec.end();
+    8        auto b = vec.begin();
+    9        vec.erase(b+1);
+    10       auto c = vec.begin() + 2;
+    11       cout<<*c;
+    12       vec.insert(vec.begin(),6);
+    13       vec.insert(vec.end(),6);
+    14       return 0;
+    15   }
+
+    A. 运行到第9行之前，*a的值是5。
+
+    B. 第11行的输出是4。
+
+    C. vector类型本身没有重载流运算符，需要自己重载<<才能使用 cout<<vec;。
+
+    D. 由于在vec插入数据需要把插入位置及之后的元素后移，第12行比第13行执行更多的元素后移操作。
+
+    【单选】下列关于STL容器说法正确的是:
+
+    A. 使用list插入删除数据，一定不会使任何的迭代器失效，包括指向被插入或被删除的元素的迭代器。
+
+    B. list的push_back可能会发生整体的内存拷贝。
+
+    C. 对map用[]进行下标访问如果元素不存在则返回nullptr。
+
+    D. 下面的代码输出是312。
+
+    1    #include <iostream>
+    2    #include <map>
+    3
+    4    int main ()
+    5    {
+    6        std::map<char,int,std::greater<char>> mymap;
+    7        mymap['b'] = 1;
+    8        mymap['a'] = 2;
+    9        mymap['c'] = 3;
+    10       for(auto it=mymap.begin(); it!=mymap.end(); ++it)
+    11           std::cout << it->second;
+    12       return 0;
+    13   }
+
+5.【多选】若在vector, list, set, map中选择，下列关于说法合适的有:
+
+A. 小明想构建一个词表，仅记录一篇文章中所有用到的词，最好选用set。
+
+B. 小兰想建立一个班级通讯录，需要通过同学姓名检索TA的相关信息，最好选用map。
+
+C. 小红想跟踪编号为1-100的被试的动态收支情况(用当前资产表示)，需要修改和查询某一编号被试的信息，最好选用list。
+
+D. 小新想维护一个排队购票系统，记录每个排队者的信息，需要从队尾加入新的排队者或从队头删去排队者信息，最好选用vector。
+
+6.【多选】下列关于C++中迭代器的说法，正确的有：
+
+A. STL中vector类的迭代器支持迭代器之间的减法。
+
+B. 调用push_back等修改vector大小的方法时，原有迭代器肯定都不会失效。
+
+C. 迭代器指向的内容删除后，该迭代器失效。
+
+D. 可以通过自定义迭代器，实现用同样操作符（例如自增操作符）执行不一样的元素访问顺序。
+
+7.【单选】关于下面的bash代码(linux环境下保存为main.sh)说法正确的是:
+
+   #!/bin/bash
+   filename=test
+   for par in $@;
+   do
+      mkdir output-$par && python ${filename}.py $par 
+   done
+
+A. 为了美观可以在filename=test的等号边加上空格，即修改为filename = test，bash脚本仍能运行、功能不变。
+
+B. 如果该目录下已有output-1子目录，再使用./main.sh 1执行该脚本，将不会运行python语句。
+
+C. 如果该bash脚本有两个参数, 则$@等价于$0 $1 $2。
+
+D. 如果执行bash脚本的命令为./main.sh 0.5 1.0，则$par是浮点类型。
+
+8.【单选】下列关于git的说法正确的是:
+
+A. 如果不小心把项目中文件 hello.cpp 的内容破坏了, 使用git reset - hello.cpp恢复到上一次提交的版本。
+
+B. git branch test会创建名为test的分支并且切换到test中
+
+C. 如果在.gitignore文件写入一行*.xx, 这可以保证只提交以.xx为后缀的文件。
+
+D. 与他人使用远程仓库合作时, 使用git fetch会比较远程仓库中的内容和本地仓库的内容，用户在检查是否有冲突以后决定是否合并到本地仓库中；而git pull会直接尝试合并。
